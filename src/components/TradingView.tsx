@@ -13,7 +13,7 @@ const TradingView = () => (
       shortInterest="8.871 BTC"
     />
     <div className="trading-content">
-      <div className="chart-section">
+      <div className="chart-section borderrr">
         <TradingChart />
       </div>
       <div className="order-section">

@@ -1,5 +1,30 @@
 import { createChart, UTCTimestamp } from "lightweight-charts";
 import { useEffect, useRef } from "react";
+import styled from "styled-components";
+
+const TradingChartContainer = styled.div`
+  background: #1a1a1a;
+  padding: 16px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 928px;
+`;
+const ChartControls = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  button {
+    background: #242424;
+    border: none;
+    color: #ddd;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      background: #333;
+    }
+  }
+`;
 
 // Mock data
 const mockData = [
@@ -33,10 +58,11 @@ const mockData = [
   },
 ];
 const TradingChart: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!chartContainerRef.current) return;
+    if (!chartContainerRef.current || !containerRef.current) return;
 
     const chart = createChart(chartContainerRef.current, {
       layout: {
@@ -47,7 +73,7 @@ const TradingChart: React.FC = () => {
         vertLines: { color: "#242424" },
         horzLines: { color: "#242424" },
       },
-      width: chartContainerRef.current.clientWidth,
+      width: containerRef.current.clientWidth,
       height: 400,
     });
 
@@ -78,22 +104,21 @@ const TradingChart: React.FC = () => {
 
     volumeSeries.setData(volumeData);
 
-    // Cleanup
     return () => {
       chart.remove();
     };
   }, []);
 
   return (
-    <div className="trading-chart">
-      <div className="chart-controls">
+    <TradingChartContainer ref={containerRef}>
+      <ChartControls>
         <button>1H</button>
         <button>4H</button>
         <button>1D</button>
         <button className="indicators-btn">INDICATORS</button>
-      </div>
+      </ChartControls>
       <div ref={chartContainerRef} />
-    </div>
+    </TradingChartContainer>
   );
 };
 
