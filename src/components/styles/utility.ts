@@ -59,8 +59,20 @@ export const SubmitButton = styled.button<{ side: "LONG" | "SHORT" }>`
   cursor: pointer;
 `;
 
-export const Dropdown = styled.select`
-  width: 167px;
+export const Dropdown = styled.select<{ widthSize?: "full" | "sm" }>`
+  ${(props) =>
+    props?.widthSize &&
+    props?.widthSize === "full" &&
+    css`
+      width: 100%;
+    `}
+  ${(props) =>
+    props?.widthSize &&
+    props?.widthSize === "sm" &&
+    css`
+      width: 168px;
+    `}
+
   background: ${colors.bg.tertiary};
   padding: ${space.xs} ${space.md};
   border-radius: ${radius.default};

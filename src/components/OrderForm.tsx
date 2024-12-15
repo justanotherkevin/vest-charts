@@ -78,12 +78,18 @@ const OrderForm = () => {
         <S.Value>{mockData.fee} USDC (0.05%)</S.Value>
       </S.Field>
 
-      <S.Field>
-        <S.Label>Advanced</S.Label>
-        <select>
+      <div>
+        <div>Advanced</div>
+        <S.Dropdown defaultValue="0xFC...E63D1" widthSize="full">
+          <option>0xFC...E63D1</option>
+          <option>0xFC...E63D1</option>
+          <option>0xFC...E63D1</option>
+          <option>0xFC...E63D1</option>
+        </S.Dropdown>
+        {/* <select>
           <option value="">Select option</option>
-        </select>
-      </S.Field>
+        </select> */}
+      </div>
 
       <S.SubmitButton side={side}>BUY / {side}</S.SubmitButton>
     </S.FormWrapper>
