@@ -73,7 +73,6 @@ const TradingChart: React.FC = () => {
         vertLines: { color: "#242424" },
         horzLines: { color: "#242424" },
       },
-      width: containerRef.current.clientWidth,
       height: 400,
     });
 
@@ -103,6 +102,7 @@ const TradingChart: React.FC = () => {
     }));
 
     volumeSeries.setData(volumeData);
+    // chart.timeScale().fitContent();
 
     return () => {
       chart.remove();
