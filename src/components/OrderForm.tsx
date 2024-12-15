@@ -46,9 +46,14 @@ const OrderForm = () => {
         <S.Value>{mockData.openPrice} USDC</S.Value>
       </S.Field>
 
-      <S.Field>
-        <S.Label>Size</S.Label>
-        <S.Input type="number" placeholder="0." />
+      <div>
+        <Input
+          label="size"
+          id="order-size"
+          placeholder="0"
+          rightPlaceholder="USDC"
+        />
+
         <div>Up to 1,458.173</div>
       </S.Field>
 

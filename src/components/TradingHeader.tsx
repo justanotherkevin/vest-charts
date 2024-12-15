@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "./styles/theme";
-import { Dropdown, Flex, Input } from "./styles/utility";
+import { Dropdown, Flex, InputStyled } from "./styles/utility";
 
 type TradingHeaderProps = {
   symbol: string;
@@ -31,6 +31,7 @@ const Metric = styled.div`
     font-weight: 400;
     line-height: 15px;
     color: ${colors.text.secondary};
+    text-transform: uppercase;
   }
   > :nth-child(2) {
     font-size: 14px;
@@ -69,7 +70,8 @@ const TradingHeader = ({
 }: TradingHeaderProps) => (
   <div className="">
     <SearchContainer>
-      <Input />
+      <InputStyled />
+      {/* is this a wallet? */}
       <Dropdown defaultValue="0xFC...E63D1">
         <option>0xFC...E63D1</option>
       </Dropdown>
