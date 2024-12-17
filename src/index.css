@@ -12,24 +12,7 @@ code {
     monospace;
 }
 
-.dark-theme {
-  background: #1a1a1a;
+.App {
+  background: #0f0e0c;
   color: #ffffff;
-}
-
-.trading-view {
-  padding: 20px;
-}
-
-.trading-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-}
-
-.order-form {
-  background: #242424;
-  border-radius: 8px;
-  padding: 20px;
 }

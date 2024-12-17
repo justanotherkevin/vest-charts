@@ -12,10 +12,15 @@ const GridContainer = styled.div`
 
   justify-items: stretch;
 `;
+const TradingViewContainer = styled.div`
+  width: 100%;
+  max-width: 1264px;
+`;
+
 const TradingView = () => {
   const [side, setSide] = useState<"PRICE" | "FUNDING">("PRICE");
   return (
-    <div className="trading-view">
+    <TradingViewContainer>
       <TradingHeader
         symbol="BTC/BITCOIN"
         price={31119.01}
@@ -45,7 +50,7 @@ const TradingView = () => {
           <OrderForm />
         </div>
       </GridContainer>
-    </div>
+    </TradingViewContainer>
   );
 };
 export default TradingView;
