@@ -4,13 +4,14 @@ export const colors = {
   success: "#4BC2A3",
   danger: "#FF5A44",
   text: {
-    primary: "#fff",
+    primary: "#F2F1F0",
     secondary: "#aeadad",
   },
   bg: {
-    primary: "#111",
-    secondary: "#222",
+    primary: "#0F0E0C",
+    secondary: "#161514",
     tertiary: "#1a1a1a",
+    info: "#222",
   },
   border: "#333",
 };

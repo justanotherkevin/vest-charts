@@ -1,12 +1,6 @@
 import styled, { css } from "styled-components";
 import { colors, radius, space } from "./theme";
 
-export const FormWrapper = styled.div`
-  background: ${colors.bg.primary};
-  padding: ${space.lg};
-  color: ${colors.text.primary};
-`;
-
 export const TabButtons = styled.div`
   display: flex;
   margin-bottom: ${space.xl};
@@ -30,23 +24,19 @@ export const Field = styled.div`
   margin-bottom: ${space.lg};
 `;
 
-export const Label = styled.div`
-  color: ${colors.text.secondary};
-  margin-bottom: ${space.xs};
-`;
-
 export const Value = styled.div`
   text-align: right;
   color: ${colors.text.primary};
 `;
 
-export const Input = styled.input`
+export const InputStyled = styled.input`
   width: 100%;
-  background: ${colors.bg.secondary};
+  background: ${colors.bg.info};
   border: none;
   padding: ${space.sm};
   color: ${colors.text.primary};
   border-radius: ${radius.default};
+  box-sizing: border-box;
 `;
 
 export const SubmitButton = styled.button<{ side: "LONG" | "SHORT" }>`
@@ -84,4 +74,9 @@ export const Flex = css`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+export const BaseContainer = css`
+  background: ${colors.bg.secondary};
+  padding: ${space.lg};
 `;
