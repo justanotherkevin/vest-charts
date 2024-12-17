@@ -1,6 +1,7 @@
 import { createChart, UTCTimestamp } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { Flex } from "./styles/utility";
 
 const TradingChartContainer = styled.div`
   background: #1a1a1a;
@@ -25,7 +26,10 @@ const ChartControls = styled.div`
     }
   }
 `;
-
+const Row = styled.div`
+  ${Flex}
+  justify-content: space-between;
+`;
 // Mock data
 const mockData = [
   {
@@ -111,12 +115,19 @@ const TradingChart: React.FC = () => {
 
   return (
     <TradingChartContainer ref={containerRef}>
-      <ChartControls>
-        <button>1H</button>
-        <button>4H</button>
-        <button>1D</button>
-        <button className="indicators-btn">INDICATORS</button>
-      </ChartControls>
+      <Row>
+        <ChartControls>
+          <button>1H</button>
+          <button>4H</button>
+          <button>1D</button>
+          <button className="indicators-btn">INDICATORS</button>
+        </ChartControls>
+        <ChartControls>
+          <button>⚙️</button>
+          <button>⏹</button>
+          <button>📷</button>
+        </ChartControls>
+      </Row>
       <div ref={chartContainerRef} />
     </TradingChartContainer>
   );
