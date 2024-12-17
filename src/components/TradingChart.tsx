@@ -1,6 +1,7 @@
 import { createChart, UTCTimestamp } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { space } from "./styles/theme";
 import { Flex } from "./styles/utility";
 
 const TradingChartContainer = styled.div`
@@ -9,26 +10,36 @@ const TradingChartContainer = styled.div`
   border-radius: 4px;
   width: 100%;
   max-width: 928px;
+  box-sizing: border-box;
 `;
 const ChartControls = styled.div`
   display: flex;
   gap: 8px;
   margin-bottom: 16px;
-  button {
-    background: #242424;
-    border: none;
-    color: #ddd;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    &:hover {
-      background: #333;
-    }
+`;
+const Button = styled.button`
+  background: #242424;
+  border: none;
+  color: #ddd;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background: #333;
   }
 `;
 const Row = styled.div`
   ${Flex}
   justify-content: space-between;
+`;
+const LeftsizeControl = styled.div`
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+  & > * {
+    margin-bottom: ${space.sm};
+  }
 `;
 // Mock data
 const mockData = [
@@ -117,17 +128,23 @@ const TradingChart: React.FC = () => {
     <TradingChartContainer ref={containerRef}>
       <Row>
         <ChartControls>
-          <button>1H</button>
-          <button>4H</button>
-          <button>1D</button>
-          <button className="indicators-btn">INDICATORS</button>
+          <Button>1H</Button>
+          <Button>4H</Button>
+          <Button>1D</Button>
+          <Button className="indicators-btn">INDICATORS</Button>
         </ChartControls>
         <ChartControls>
-          <button>⚙️</button>
-          <button>⏹</button>
-          <button>📷</button>
+          <Button>⚙️</Button>
+          <Button>⏹</Button>
+          <Button>📷</Button>
         </ChartControls>
       </Row>
+      {/* <Row></Row> */}
+      {/* <LeftsizeControl>
+        <Button>⚙️</Button>
+        <Button>⏹</Button>
+        <Button>📷</Button>
+      </LeftsizeControl> */}
       <div ref={chartContainerRef} />
     </TradingChartContainer>
   );
