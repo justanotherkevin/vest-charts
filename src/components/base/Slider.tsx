@@ -37,7 +37,6 @@ const Range = styled.input`
   margin: 0;
   color: #252525;
   border-radius: 2px;
-  position: relative;
   z-index: 1;
 
   &::-webkit-slider-thumb {

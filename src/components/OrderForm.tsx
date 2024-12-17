@@ -1,6 +1,37 @@
 import { useState } from "react";
+import styled from "styled-components";
+import Input from "./base/Input";
 import LeverageSlider from "./base/Slider";
+import { colors, space } from "./styles/theme";
 import * as S from "./styles/utility";
+
+const Row = styled.div`
+  ${S.Flex}
+  justify-content: space-between;
+`;
+
+const OrderFormContainer = styled.div`
+  ${S.BaseContainer}
+  color: ${colors.text.secondary};
+  > * {
+    margin-bottom: ${space.md};
+  }
+`;
+
+const randonWidth = {
+  width: "84px",
+};
+const FeedsAndMis = styled.div`
+  & > * {
+    margin-bottom: ${space.xs};
+  }
+`;
+const PrimaryText = styled.div`
+  color: ${colors.text.primary};
+`;
+const SecondaryText = styled.div`
+  color: ${colors.text.secondary};
+`;
 
 const OrderForm = () => {
   const [side, setSide] = useState<"LONG" | "SHORT">("LONG");
@@ -15,7 +46,7 @@ const OrderForm = () => {
   };
 
   return (
-    <S.FormWrapper>
+    <OrderFormContainer>
       <S.TabButtons>
         <S.TabButton
           fullLength={true}
@@ -33,18 +64,21 @@ const OrderForm = () => {
         </S.TabButton>
       </S.TabButtons>
 
-      <S.Field>
-        <S.Label>Order type</S.Label>
-        <select defaultValue="MARKET">
-          <option value="MARKET">MARKET</option>
-          <option value="LIMIT">LIMIT</option>
-        </select>
-      </S.Field>
+      <Row>
+        <div>
+          <div>Order type</div>
+          <S.Dropdown defaultValue="market">
+            <option>market</option>
+            <option>limit</option>
+            <option>stop</option>
+          </S.Dropdown>
+        </div>
 
-      <S.Field>
-        <S.Label>Open Price</S.Label>
-        <S.Value>{mockData.openPrice} USDC</S.Value>
-      </S.Field>
+        <div style={randonWidth}>
+          <div>Open Price</div>
+          <S.Value>{mockData.openPrice} USDC</S.Value>
+        </div>
+      </Row>
 
       <div>
         <Input
@@ -53,46 +87,38 @@ const OrderForm = () => {
           placeholder="0"
           rightPlaceholder="USDC"
         />
-
         <div>Up to 1,458.173</div>
-      </S.Field>
-
-      <S.Field>
-        <S.Label>Leverage</S.Label>
-        <S.Value>{leverage}.00X</S.Value>
+      </div>
+      {/* Leavage */}
+      <div>
         <LeverageSlider value={leverage} onChange={setLeverage} />
-      </S.Field>
+      </div>
+      {/* fees and mis cost */}
+      <FeedsAndMis>
+        <Row>
+          <SecondaryText>Liquidation Price</SecondaryText>
+          <PrimaryText>{mockData.liquidationPrice} USDC</PrimaryText>
+        </Row>
 
-      <S.Field>
-        <S.Label>Liquidation Price</S.Label>
-        <S.Value>{mockData.liquidationPrice} USDC</S.Value>
-      </S.Field>
+        <Row>
+          <SecondaryText>Slippage</SecondaryText>
+          <PrimaryText>{mockData.slippage} USDC (0.3%)</PrimaryText>
+        </Row>
 
-      <S.Field>
-        <S.Label>Slippage</S.Label>
-        <S.Value>{mockData.slippage} USDC (0.3%)</S.Value>
-      </S.Field>
-
-      <S.Field>
-        <S.Label>Fee</S.Label>
-        <S.Value>{mockData.fee} USDC (0.05%)</S.Value>
-      </S.Field>
+        <Row>
+          <SecondaryText>Fee</SecondaryText>
+          <PrimaryText>{mockData.fee} USDC (0.05%)</PrimaryText>
+        </Row>
+      </FeedsAndMis>
 
       <div>
-        <div>Advanced</div>
-        <S.Dropdown defaultValue="0xFC...E63D1" widthSize="full">
-          <option>0xFC...E63D1</option>
-          <option>0xFC...E63D1</option>
-          <option>0xFC...E63D1</option>
-          <option>0xFC...E63D1</option>
+        <S.Dropdown defaultValue="Advanced" value="advanced" widthSize="full">
+          <option>Advanced</option>
         </S.Dropdown>
-        {/* <select>
-          <option value="">Select option</option>
-        </select> */}
       </div>
 
       <S.SubmitButton side={side}>BUY / {side}</S.SubmitButton>
-    </S.FormWrapper>
+    </OrderFormContainer>
   );
 };
 export default OrderForm;
