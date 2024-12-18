@@ -43,10 +43,10 @@ const TradingView = () => {
       </S.TabButtons>
 
       <GridContainer>
-        <div className="chart-section borderrr">
+        <div className="chart-section">
           <TradingChart />
         </div>
-        <div className="order-section borderrr">
+        <div className="order-section">
           <OrderForm />
         </div>
       </GridContainer>
