@@ -21,14 +21,17 @@ const OrderFormContainer = styled.div`
 const randonWidth = {
   width: "84px",
 };
+
 const FeedsAndMis = styled.div`
   & > * {
     margin-bottom: ${space.xs};
   }
 `;
+
 const PrimaryText = styled.div`
   color: ${colors.text.primary};
 `;
+
 const SecondaryText = styled.div`
   color: ${colors.text.secondary};
 `;
