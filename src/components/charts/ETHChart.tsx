@@ -6,10 +6,11 @@ import {
   Time,
   UTCTimestamp,
 } from "lightweight-charts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { CANDLE_STYLE, CHART_CONFIG } from "../../data/constants";
 import { useHistoricalData } from "../../hooks/useHistoricalData";
-import { useReactions } from "../../hooks/useReactions";
+import { EmojiReactions, useReactions } from "../../hooks/useReactions";
+import { parseISODateToChartTime } from "../../utils/dateHelper";
 
 interface CandleData {
   time: Time;
@@ -18,25 +19,10 @@ interface CandleData {
   low: number;
   close: number;
 }
-type EmojiReactions = {
-  [date: string]: Reaction[];
-};
-type Reaction = {
-  userId: string;
-  emoji: string;
-};
-// Helper function
-function parseISODate(isoString: string) {
-  const date = new Date(isoString);
-  return {
-    year: date.getUTCFullYear(),
-    month: date.getUTCMonth() + 1, // +1 because getMonth() returns 0-11
-    day: date.getUTCDate(),
-  };
-}
+
 function createMarkers(reactions: EmojiReactions): SeriesMarker<Time>[] {
   return Object.entries(reactions).map(([date, usersReaction]) => ({
-    time: parseISODate(date) as Time,
+    time: parseISODateToChartTime(date),
     position: "aboveBar",
     color: "#f210f6",
     shape: "circle",
@@ -48,8 +34,7 @@ const ETHChart = () => {
   const chartRef = useRef<IChartApi | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
-  const [candleSeries, setCandleSeries] =
-    useState<ISeriesApi<"Candlestick"> | null>(null);
+
   const {
     reactions,
     loading: reactionsLoading,
@@ -71,7 +56,6 @@ const ETHChart = () => {
 
     const series = chart.addCandlestickSeries(CANDLE_STYLE);
     seriesRef.current = series;
-    setCandleSeries(series);
 
     // Setup WebSocket
     // setupWebSocket(series);
@@ -159,11 +143,7 @@ const ETHChart = () => {
     };
   };
 
-  return (
-    <div>
-      <div ref={chartHtmlRef} />
-    </div>
-  );
+  return <div ref={chartHtmlRef} />;
 };
 
 export default ETHChart;
