@@ -35,24 +35,13 @@ function parseISODate(isoString: string) {
   };
 }
 function createMarkers(reactions: EmojiReactions): SeriesMarker<Time>[] {
-  const newMarkers = [];
-  for (let emojiReaction in reactions) {
-    const { year, month, day } = parseISODate(emojiReaction);
-    const usersReaction = reactions[emojiReaction];
-    const allEmoji = usersReaction.reduce(
-      (combineString, user) => combineString + " " + user.emoji,
-      ""
-    );
-    const data = {
-      time: { year, month, day } as Time,
-      position: "aboveBar",
-      color: "#f210f6",
-      shape: "circle",
-      text: `initial markerrrrrrr ${allEmoji}`,
-    } as SeriesMarker<Time>;
-    newMarkers.push(data);
-  }
-  return newMarkers;
+  return Object.entries(reactions).map(([date, usersReaction]) => ({
+    time: parseISODate(date) as Time,
+    position: "aboveBar",
+    color: "#f210f6",
+    shape: "circle",
+    text: `${usersReaction.map((u) => u.emoji).join(" ")}`,
+  }));
 }
 const ETHChart = () => {
   const chartHtmlRef = useRef<HTMLDivElement>(null);
