@@ -53,14 +53,14 @@ const OrderForm = () => {
       <S.TabButtons>
         <S.TabButton
           fullLength={true}
-          active={side === "LONG"}
+          active={`${side === "LONG"}`}
           onClick={() => setSide("LONG")}
         >
           LONG
         </S.TabButton>
         <S.TabButton
           fullLength={true}
-          active={side === "SHORT"}
+          active={`${side === "SHORT"}`}
           onClick={() => setSide("SHORT")}
         >
           SHORT

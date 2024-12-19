@@ -70,7 +70,7 @@ const TradingHeader = ({
 }: TradingHeaderProps) => (
   <div className="">
     <SearchContainer>
-      <InputStyled />
+      <InputStyled placeholder="🔍 ETH" />
       {/* is this a wallet? */}
       <Dropdown defaultValue="0xFC...E63D1">
         <option>0xFC...E63D1</option>

@@ -34,11 +34,14 @@ const TradingView = () => {
       />
 
       <S.TabButtons>
-        <S.TabButton active={side === "PRICE"} onClick={() => setSide("PRICE")}>
+        <S.TabButton
+          active={`${side === "PRICE"}`}
+          onClick={() => setSide("PRICE")}
+        >
           PRICE
         </S.TabButton>
         <S.TabButton
-          active={side === "FUNDING"}
+          active={`${side === "FUNDING"}`}
           onClick={() => setSide("FUNDING")}
         >
           FUNDING
