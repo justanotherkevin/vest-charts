@@ -16,14 +16,14 @@ You will also see any lint errors in the console.
 
 ## Features
 
-[x] 📈 Interactive Trading Chart using `lightweight-charts`
-[x] 💱 Cryptocurrency price tracking (ETH/BTC)
-[ ] ⚡ Real-time WebSocket updates for live price data
-[ ] 🎯 Multiple timeframe options (1H, 4H, 1D)
-[ ] 💹 Trading indicators support
-[ ] 🔄 Funding rate monitoring
-[x] 📊 Order form for Long/Short positions
-[x] 😀 Social features with emoji reactions on chart
+- [x] 📈 Interactive Trading Chart using `lightweight-charts`
+- [x] 💱 Cryptocurrency price tracking (ETH/BTC)
+- [ ] ⚡ Real-time WebSocket updates for live price data
+- [ ] 🎯 Multiple timeframe options (1H, 4H, 1D)
+- [ ] 💹 Trading indicators support
+- [ ] 🔄 Funding rate monitoring
+- [x] 📊 Order form for Long/Short positions
+- [x] 😀 Social features with emoji reactions on chart
 
 ## Technical Stack
 
