@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
-
+export type EmojiReactions = {
+  [date: string]: Reaction[];
+};
+type Reaction = {
+  userId: string;
+  emoji: string;
+};
 export const useReactions = () => {
-  const [reactions, setReactions] = useState<any>([]);
+  const [reactions, setReactions] = useState<EmojiReactions>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
