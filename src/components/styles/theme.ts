@@ -6,12 +6,17 @@ export const colors = {
   text: {
     primary: "#F2F1F0",
     secondary: "#aeadad",
+    light: "#ddd",
   },
   bg: {
     primary: "#0F0E0C",
     secondary: "#161514",
     tertiary: "#1a1a1a",
     info: "#222",
+  },
+  btn: {
+    primary: "#242424",
+    hover: "#333",
   },
   border: "#333",
 };

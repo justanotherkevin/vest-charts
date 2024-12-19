@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import ETHChart from "./charts/ETHChart";
 import { space } from "./styles/theme";
-import { Flex } from "./styles/utility";
+import { ChartButton, Row } from "./styles/utility";
 
 const TradingChartContainer = styled.div`
   background: #1a1a1a;
@@ -17,21 +17,7 @@ const ChartControls = styled.div`
   gap: 8px;
   margin-bottom: 16px;
 `;
-const Button = styled.button`
-  background: #242424;
-  border: none;
-  color: #ddd;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  &:hover {
-    background: #333;
-  }
-`;
-const Row = styled.div`
-  ${Flex}
-  justify-content: space-between;
-`;
+
 const LeftsizeControl = styled.div`
   position: absolute;
   display: flex;
@@ -51,21 +37,21 @@ const TradingChart: React.FC = () => {
     <TradingChartContainer ref={containerRef}>
       <Row>
         <ChartControls>
-          <Button>1H</Button>
-          <Button>4H</Button>
-          <Button>1D</Button>
-          <Button className="indicators-btn">INDICATORS</Button>
+          <ChartButton>1H</ChartButton>
+          <ChartButton>4H</ChartButton>
+          <ChartButton>1D</ChartButton>
+          <ChartButton className="indicators-btn">INDICATORS</ChartButton>
         </ChartControls>
         <ChartControls>
-          <Button>⚙️</Button>
-          <Button>⏹</Button>
-          <Button>📷</Button>
+          <ChartButton>⚙️</ChartButton>
+          <ChartButton>⏹</ChartButton>
+          <ChartButton>📷</ChartButton>
         </ChartControls>
       </Row>
       {/* <LeftsizeControl>
-        <Button>⚙️</Button>
-        <Button>⏹</Button>
-        <Button>📷</Button>
+        <ChartButton>⚙️</ChartButton>
+        <ChartButton>⏹</ChartButton>
+        <ChartButton>📷</ChartButton>
       </LeftsizeControl> */}
       <ETHChart />
     </TradingChartContainer>
