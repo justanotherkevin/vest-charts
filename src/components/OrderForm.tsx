@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import Confetti from "react-confetti";
 import styled from "styled-components";
 import Input from "./base/Input";
 import LeverageSlider from "./base/Slider";
@@ -12,12 +13,19 @@ const Row = styled.div`
 
 const OrderFormContainer = styled.div`
   ${S.BaseContainer}
+  position: relative;
   color: ${colors.text.secondary};
   > * {
     margin-bottom: ${space.md};
   }
 `;
-
+const ConfettiWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+`;
 const randonWidth = {
   width: "84px",
 };
@@ -36,9 +44,18 @@ const SecondaryText = styled.div`
   color: ${colors.text.secondary};
 `;
 
+const ConfettiBtn = styled.button`
+  background-color: ${colors.success};
+  width: 100%;
+  padding: ${space.md};
+  color: #000;
+`;
+
 const OrderForm = () => {
   const [side, setSide] = useState<"LONG" | "SHORT">("LONG");
   const [leverage, setLeverage] = useState(2);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const confettiRef = useRef<HTMLDivElement>(null);
 
   // Mock data
   const mockData = {
@@ -47,9 +64,25 @@ const OrderForm = () => {
     slippage: "1.20",
     fee: "2.00",
   };
-
+  const handleSubmit = useCallback(() => {
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 3000); // Hide after 3s
+  }, []);
   return (
-    <OrderFormContainer>
+    <OrderFormContainer ref={confettiRef}>
+      {showConfetti && (
+        <ConfettiWrapper>
+          <Confetti
+            width={confettiRef?.current?.clientWidth || 100}
+            height={confettiRef?.current?.clientHeight || 100}
+            recycle={false}
+            gravity={3}
+            // wind={4}
+            colors={["#fff", colors.success]}
+            numberOfPieces={500}
+          />
+        </ConfettiWrapper>
+      )}
       <S.TabButtons>
         <S.TabButton
           fullLength={true}
@@ -119,8 +152,15 @@ const OrderForm = () => {
           <option>Advanced</option>
         </S.Dropdown>
       </div>
-
-      <S.SubmitButton side={side}>BUY / {side}</S.SubmitButton>
+      {showConfetti ? (
+        <ConfettiBtn onClick={handleSubmit}>
+          YOU JUST EARNED 200 {side} - TOKENS
+        </ConfettiBtn>
+      ) : (
+        <S.SubmitButton side={side} onClick={handleSubmit}>
+          BUY / {side}
+        </S.SubmitButton>
+      )}
     </OrderFormContainer>
   );
 };
