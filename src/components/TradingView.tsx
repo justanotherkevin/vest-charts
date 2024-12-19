@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import OrderForm from "./OrderForm";
 import TradingChart from "./TradingChart";
@@ -9,7 +9,6 @@ const GridContainer = styled.div`
   display: grid;
   column-gap: 16px;
   grid-template-columns: minmax(640px, auto) 360px;
-
   justify-items: stretch;
 `;
 const TradingViewContainer = styled.div`
@@ -19,6 +18,10 @@ const TradingViewContainer = styled.div`
 
 const TradingView = () => {
   const [side, setSide] = useState<"PRICE" | "FUNDING">("PRICE");
+  // const { reactions, loading, error } = useReactions();
+
+  useEffect(() => {}, []);
+
   return (
     <TradingViewContainer>
       <TradingHeader
